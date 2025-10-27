@@ -15,7 +15,14 @@ namespace GTU_Tables_Windows
 
         public Preferences(string fileName)
         {
-            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "GTU-Tables-Windows",
+                fileName
+            );
+            string prefsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "GTU-Tables-Windows"
+            );
+            Directory.CreateDirectory(prefsPath);
             if (File.Exists(filePath))
             {
                 var json = File.ReadAllText(filePath);
